@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from .models import Contact,myPersonalInfo
 from .forms import ContactForm
 from django.contrib import messages
@@ -53,3 +53,5 @@ def home(request):
         form = ContactForm()
 
     return render(request, 'home.html', {'form': form, 'info': info})
+
+

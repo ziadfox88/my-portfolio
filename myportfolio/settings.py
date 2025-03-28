@@ -21,7 +21,7 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w&v$1n01lp@6zlgd%-8y2sf*ngfu=fstf!k*s@e8)hw_!raaa6'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -141,6 +141,6 @@ EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
 EMAIL_PORT = 587  # TLS port for Gmail
 EMAIL_USE_TLS = True  # Use TLS for secure connection
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # Your Gmail address
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # Password stored in environment variable
+EMAIL_HOST_PASSWORD = os.getenv('GOOGLE_APP_PASS')  # Password stored in environment variable
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')  # Sender email
 CONTACT_EMAIL =  os.getenv('CONTACT_EMAIL')   # Recipient email (e.g., for contact form submissions)
