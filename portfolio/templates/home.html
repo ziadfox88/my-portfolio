@@ -71,7 +71,7 @@
                     {% if info.image %}
                     <img src="{{info.image.url}}" alt="{{info.name}} image">
                     {% else %}
-                    
+
                     {% endif %}
                 </div>
 
@@ -124,7 +124,7 @@
                 {% if portfolios %}
                 {% for port in portfolios %}
                 <div class="portfolio-img">
-                    <img src=" {{port.image}} " alt="{{port.title}}">
+                    <img src=" {{port.image.url}} " alt="{{port.title}}">
                     <div class="portfolio-link">
                         <a href=" {{port.link|default:"#"}} " class="portfolio-link-name">View Details <p>{{port.description|default:""}}</p></a>
                     </div>
