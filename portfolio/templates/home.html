@@ -70,7 +70,7 @@
 
                 <div>
                     <h2 class="about-subtitle">I'm {{info.name}}</h2>
-                    <span class="about-profession">Web Developer</span>
+                    <span class="about-profession">{{info.job}}</span>
                     <p class="about-text">{{info.description}}</p>
 
                     <div class="about-social">
@@ -94,9 +94,14 @@
                     <span class="skills-name">JAVASCRIPT</span>
 
                     <h3 class="skils-subtitle">BackEnd</h3>
-                    <span class="skills-name">Python</span>
-                    <span class="skills-name">Django</span>
-                    <span class="skills-name">Postgress</span>
+                    {% if skills %}
+                    <ul>
+                        {% for skill in skills %}
+                            <span class="skills-name">{{ skill }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <span class="skills-name">No skills available</span>
+                    {% endif %}
                 </div>
 
                 <div class="skills-img">
@@ -109,54 +114,23 @@
             <h2 class="section-title">Portfolio</h2>
 
             <div class="portfolio-container bd-grid">
+                {% if portfolios %}
+                {% for port in portfolios %}
                 <div class="portfolio-img">
-                    <img src="https://i.postimg.cc/c4LgMqgK/work1.jpg" alt="work image">
-
+                    <img src=" {{port.image}} " alt="{{port.title}}">
                     <div class="portfolio-link">
-                        <a href="#" class="portfolio-link-name">View Details</a>
+                        <a href=" {{port.link|default:"#"}} " class="portfolio-link-name">View Details <p>{{port.description|default:""}}</p></a>
                     </div>
                 </div>
-
+                {% endfor %}
+                {% else %}
                 <div class="portfolio-img">
-                    <img src="https://i.postimg.cc/CxZRXj4S/work2.jpg" alt="work image">
-
+                    <img src="https://i.postimg.cc/3x2J6Y0K/portfolio.jpg" alt="portfolio image">
                     <div class="portfolio-link">
-                        <a href="#" class="portfolio-link-name">View Details</a>
+                        <a href="#" class="portfolio-link-name">No Portfolio Available</a>
                     </div>
                 </div>
-
-                <div class="portfolio-img">
-                    <img src="https://i.postimg.cc/wjS1p7WJ/work3.jpg" alt="work image">
-
-                    <div class="portfolio-link">
-                        <a href="#" class="portfolio-link-name">View Details</a>
-                    </div>
-                </div>
-
-                <div class="portfolio-img">
-                    <img src="https://i.postimg.cc/N0m5fBVn/work4.jpg" alt="work image">
-
-                    <div class="portfolio-link">
-                        <a href="#" class="portfolio-link-name">View Details</a>
-                    </div>
-                </div>
-
-                <div class="portfolio-img">
-                    <img src="https://i.postimg.cc/vHTTxWkf/work5.jpg" alt="work image">
-
-                    <div class="portfolio-link">
-                        <a href="#" class="portfolio-link-name">View Details</a>
-                    </div>
-                </div>
-
-                <div class="portfolio-img">
-                    <img src="https://i.postimg.cc/cHT1rHcF/work6.jpg" alt="work image">
-
-                    <div class="portfolio-link">
-                        <a href="#" class="portfolio-link-name">View Details</a>
-                    </div>
-                </div>
-
+                {% endif %}
             </div>
         </section>
 

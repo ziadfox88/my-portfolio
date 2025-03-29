@@ -28,9 +28,9 @@ class myPersonalInfo(models.Model):
     another_phone= models.CharField(max_length=20,null=True,blank=True)
     description = models.TextField(max_length=800,null=True,blank=True)
     image = models.ImageField(upload_to='images/',null=True,blank=True)
-    skills = models.TextField(max_length=800,null=True,blank=True)
+    skills = models.CharField(max_length=800,null=True,blank=True)
     education = models.TextField(max_length=800,null=True,blank=True)
-    
+    job =models.CharField(max_length=200,null=True,blank=True)
     
     def save(self, *args, **kwargs):
         # Process the image only if it exists and hasn’t been processed yet
@@ -53,3 +53,13 @@ class myPersonalInfo(models.Model):
         
     def __self__(self):
         return(self.name)
+    
+    
+class portfolio(models.Model):
+    title = models.CharField(max_length=80)
+    description = models.TextField(max_length=800,null=True,blank=True)
+    image = models.ImageField(upload_to='images/portfolio/',null=True,blank=True)
+    link = models.CharField(max_length=100,null=True,blank=True)
+    
+    def __self__(self):
+        return(self.title)

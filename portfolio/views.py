@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,HttpResponse
-from .models import Contact,myPersonalInfo
+from .models import Contact,myPersonalInfo,portfolio
 from .forms import ContactForm
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -25,7 +25,15 @@ from django.conf import settings
 def home(request):
     # Get the first myPersonalInfo object or None
     info = myPersonalInfo.objects.first()
-
+    portfolios = portfolio.objects.all()  # Get all portfolio items
+    skills = []
+    if info and hasattr(info, 'skills'):  # Check if the skills attribute exists
+        if isinstance(info.skills, str):  # Ensure skills is a string
+            skills = info.skills.split(',') if info.skills else []
+        else:
+            # If skills is not a string but exists, convert it to a list safely
+            skills = list(info.skills) if info.skills else []
+    
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -52,6 +60,6 @@ def home(request):
     else:
         form = ContactForm()
 
-    return render(request, 'home.html', {'form': form, 'info': info})
+    return render(request, 'home.html', {'form': form, 'info': info, 'skills': skills, 'portfolios': portfolios})
 
 
