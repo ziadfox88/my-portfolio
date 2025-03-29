@@ -54,8 +54,11 @@
                 <div class="home-scroll">
                     <a href="#about" class="home-scroll-link"><i class='bx bx-up-arrow-alt' ></i>SCROLL DOWN</a>
                 </div>
+                {% if info.image %}
+                <img src="{{info.image.url}}" alt="{{info.name}}" class="home-img">
+                {% else %}
 
-                <img src="{{info.image}}" alt="{{info.name}}" class="home-img">
+                {% endif %}
             </div>
         </section>
     
@@ -65,7 +68,11 @@
 
             <div class="about-container bd-grid">
                 <div class="about-img">
-                    <img src="{{info.image}}" alt="{{info.name}} image">
+                    {% if info.image %}
+                    <img src="{{info.image.url}}" alt="{{info.name}} image">
+                    {% else %}
+                    
+                    {% endif %}
                 </div>
 
                 <div>

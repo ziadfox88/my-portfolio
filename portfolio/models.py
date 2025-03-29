@@ -18,7 +18,7 @@ class Contact(models.Model):
         return(self.name)
     
 class myPersonalInfo(models.Model):
-    name = models.CharField(max_length=80)
+    name = models.CharField(max_length=80,null=True,blank=True)
     email = models.EmailField(max_length=100,null=True,blank=True)
     facebook = models.CharField(max_length=100,null=True,blank=True)
     instagram = models.CharField(max_length=100,null=True,blank=True)
@@ -27,7 +27,7 @@ class myPersonalInfo(models.Model):
     phone_number = models.CharField(max_length=20,null=True,blank=True)
     another_phone= models.CharField(max_length=20,null=True,blank=True)
     description = models.TextField(max_length=800,null=True,blank=True)
-    image = models.ImageField(upload_to='images/',null=True,blank=True)
+    image = models.ImageField(upload_to='upload/images/personal/',null=True,blank=True)
     skills = models.CharField(max_length=800,null=True,blank=True)
     education = models.TextField(max_length=800,null=True,blank=True)
     job =models.CharField(max_length=200,null=True,blank=True)
@@ -58,7 +58,7 @@ class myPersonalInfo(models.Model):
 class portfolio(models.Model):
     title = models.CharField(max_length=80)
     description = models.TextField(max_length=800,null=True,blank=True)
-    image = models.ImageField(upload_to='images/portfolio/',null=True,blank=True)
+    image = models.ImageField(upload_to='upload/images/portfolio/',null=True,blank=True)
     link = models.CharField(max_length=100,null=True,blank=True)
     
     def __self__(self):

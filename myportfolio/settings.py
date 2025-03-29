@@ -24,7 +24,7 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','my-portfolio-production-f7a9.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1/','https://my-portfolio-production-f7a9.up.railway.app']
@@ -86,6 +86,20 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE':'django.db.backends.postgresql',
+#         # 'NAME':'test1',
+#         # 'USER':'ziad',
+#         'NAME':'railway',
+#         'USER':'postgres',
+#         'PASSWORD': DB_PASSWORD_Z,
+#         'HOST':'junction.proxy.rlwy.net',
+#         'PORT':'37704'
+#     }
+# }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -122,14 +136,19 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
+
+MEDIA_URL='media/'
+
+MEDIA_ROOT=BASE_DIR/'media'
+
+STATICFILES_DIRS = [
+    BASE_DIR/'static'
+]
+
 #white noise static stuff
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-
-MIDIA_URL = 'media/'
-MIDIA_ROOT = BASE_DIR / 'media'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
