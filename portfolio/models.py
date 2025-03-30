@@ -3,6 +3,7 @@ from rembg import remove
 from PIL import Image
 from io import BytesIO
 from django.core.files.base import ContentFile
+
 # Create your models here.
 
 
@@ -31,6 +32,8 @@ class myPersonalInfo(models.Model):
     skills = models.CharField(max_length=800,null=True,blank=True)
     education = models.TextField(max_length=800,null=True,blank=True)
     job =models.CharField(max_length=200,null=True,blank=True)
+    hits = models.IntegerField(default=0)
+    
     
     def save(self, *args, **kwargs):
         # Process the image only if it exists and hasn’t been processed yet

@@ -26,8 +26,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','my-portfolio-production-f7a9.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1/','https://my-portfolio-production-f7a9.up.railway.app']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','my-portfolio-production-f7a9.up.railway.app','a009-197-164-206-159.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1/','https://my-portfolio-production-f7a9.up.railway.app','https://a009-197-164-206-159.ngrok-free.app']
 
 
 # Application definition

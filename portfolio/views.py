@@ -4,6 +4,8 @@ from .forms import ContactForm
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from django.db.models import F
+
 # Create your views here.
 
 # def home(request):
@@ -25,6 +27,8 @@ from django.conf import settings
 def home(request):
     # Get the first myPersonalInfo object or None
     info = myPersonalInfo.objects.first()
+    myPersonalInfo.objects.filter(pk=info.pk).update(hits=F('hits') + 1)
+    info.refresh_from_db()
     portfolios = portfolio.objects.all()  # Get all portfolio items
     skills = []
     if info and hasattr(info, 'skills'):  # Check if the skills attribute exists
