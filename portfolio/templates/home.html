@@ -54,7 +54,7 @@
                 <div class="home-scroll">
                     <a href="#about" class="home-scroll-link"><i class='bx bx-up-arrow-alt' ></i>SCROLL DOWN</a>
                 </div>
-                {% if info.image.url %}
+                {% if info.image %}
                 <img src="{{info.image.url}}" alt="{{info.name}}" class="home-img">
                 {% else %}
 
@@ -70,6 +70,7 @@
                 <div class="about-img">
                     {% if info.image %}
                     <img src="{{info.image.url}}" alt="{{info.name}} image">
+
                     {% else %}
 
                     {% endif %}

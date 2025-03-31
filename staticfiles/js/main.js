@@ -119,3 +119,12 @@ setTimeout(function() {
         setTimeout(() => alert.remove(), 500); // Remove alert element after transition
     });
 }, 6000); // 6 seconds
+
+
+
+
+
+
+
+
+

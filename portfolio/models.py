@@ -1,8 +1,9 @@
-from django.db import models
-from rembg import remove
-from PIL import Image
 from io import BytesIO
-from django.core.files.base import ContentFile
+from django.db import models
+from cloudinary.models import CloudinaryField
+import cloudinary.uploader
+from PIL import Image
+from rembg import remove 
 
 # Create your models here.
 
@@ -28,7 +29,7 @@ class myPersonalInfo(models.Model):
     phone_number = models.CharField(max_length=20,null=True,blank=True)
     another_phone= models.CharField(max_length=20,null=True,blank=True)
     description = models.TextField(max_length=800,null=True,blank=True)
-    image = models.ImageField(upload_to='upload/images/personal/',null=True,blank=True)
+    image = CloudinaryField('image')
     skills = models.CharField(max_length=800,null=True,blank=True)
     education = models.TextField(max_length=800,null=True,blank=True)
     job =models.CharField(max_length=200,null=True,blank=True)
@@ -36,33 +37,51 @@ class myPersonalInfo(models.Model):
     
     
     def save(self, *args, **kwargs):
-        # Process the image only if it exists and hasn’t been processed yet
+        # Process the image only if it exists and its name doesn't already start with 'processed_'
         if self.image and not self.image.name.startswith('processed_'):
-            # Open the original image
-            input_image = Image.open(self.image)
-            # Remove the background
+            try:
+                # Open the original image using Pillow
+                input_image = Image.open(self.image)
+            except Exception as e:
+                print("Error opening image:", e)
+                return super().save(*args, **kwargs)
+            
+            # Remove the background (using rembg)
             output_image = remove(input_image)
-            # Save to a bytes buffer
+            
+            # Save the processed image to an in-memory bytes buffer in PNG format
             buffer = BytesIO()
             output_image.save(buffer, format='PNG')
             buffer.seek(0)
-            # Create a new file name
+            
+            # Generate a new public_id for the processed image.
+            # Here we strip the extension from the original name.
             original_name = self.image.name
-            new_name = 'processed_' + original_name
-            # Update the image field with the processed image
-            self.image.save(new_name, ContentFile(buffer.getvalue()), save=False)
-        # Call the parent save method
+            base_name = original_name.rsplit('.', 1)[0]
+            new_public_id = 'processed_' + base_name
+            
+            # Upload the processed image to Cloudinary.
+            # Optionally, you can specify a folder by adding folder='your_folder' in the arguments.
+            upload_result = cloudinary.uploader.upload(
+                buffer,
+                public_id=new_public_id
+            )
+            # Set the image field to the new public_id.
+            self.image = upload_result['public_id']
+            
+        # Call the parent save method to store the model instance.
         super().save(*args, **kwargs)
         
-    def __self__(self):
-        return(self.name)
+    def __str__(self):
+        return self.name
     
     
 class portfolio(models.Model):
     title = models.CharField(max_length=80)
     description = models.TextField(max_length=800,null=True,blank=True)
-    image = models.ImageField(upload_to='upload/images/portfolio/',null=True,blank=True)
+    image = CloudinaryField('image/portfolio')
     link = models.CharField(max_length=100,null=True,blank=True)
     
     def __self__(self):
         return(self.title)
+    
