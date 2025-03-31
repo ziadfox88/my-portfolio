@@ -104,8 +104,6 @@ DATABASES = {
     }
 }
 
-# postgresql://postgres:fRGVStnlTQwiOSONtsMIkRNwGVnufHTC@switchback.proxy.rlwy.net:23007/railway
-# postgresql://postgres:fRGVStnlTQwiOSONtsMIkRNwGVnufHTC@postgres.railway.internal:5432/railway
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -160,11 +158,6 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
-#     'API_KEY':  os.getenv('API_KEY'),
-#     'API_SECRET':  os.getenv('API_SECRET'),
-# }
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
     'API_KEY': os.getenv('API_KEY'),
