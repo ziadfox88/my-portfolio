@@ -98,7 +98,7 @@ DATABASES = {
         # 'USER':'ziad',
         'NAME':'railway',
         'USER':'postgres',
-        'PASSWORD': os.getenv('DB_PASSWORD_Z'),
+        'PASSWORD': os.environ.get['DB_PASSWORD_Z'],
         'HOST':'switchback.proxy.rlwy.net',
         'PORT':'23007'
     }
