@@ -90,6 +90,7 @@ WSGI_APPLICATION = 'myportfolio.wsgi.application'
 #     }
 # }
 
+# 'PASSWORD': os.environ.get['DB_PASSWORD_Z'],
 
 DATABASES = {
     'default': {
@@ -98,7 +99,7 @@ DATABASES = {
         # 'USER':'ziad',
         'NAME':'railway',
         'USER':'postgres',
-        'PASSWORD': os.environ.get['DB_PASSWORD_Z'],
+        'PASSWORD': os.getenv('DB_PASSWORD_Z'),
         'HOST':'switchback.proxy.rlwy.net',
         'PORT':'23007'
     }

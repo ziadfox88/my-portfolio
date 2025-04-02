@@ -37,39 +37,38 @@ class myPersonalInfo(models.Model):
     
     
     def save(self, *args, **kwargs):
-        # Process the image only if it exists and its name doesn't already start with 'processed_'
-        if self.image and not self.image.name.startswith('processed_'):
+        # Only process if an image is provided and this is a new upload.
+        # We attempt to get a name attribute; if not available, we assume it's already processed.
+        original_name = getattr(self.image, 'name', '')
+        if self.image and original_name and not original_name.startswith('processed_'):
             try:
-                # Open the original image using Pillow
+                # Open the original image with Pillow
                 input_image = Image.open(self.image)
             except Exception as e:
                 print("Error opening image:", e)
                 return super().save(*args, **kwargs)
             
-            # Remove the background (using rembg)
+            # Remove the background using rembg
             output_image = remove(input_image)
             
-            # Save the processed image to an in-memory bytes buffer in PNG format
+            # Save the processed image to an in-memory buffer in PNG format
             buffer = BytesIO()
             output_image.save(buffer, format='PNG')
             buffer.seek(0)
             
             # Generate a new public_id for the processed image.
-            # Here we strip the extension from the original name.
-            original_name = self.image.name
             base_name = original_name.rsplit('.', 1)[0]
             new_public_id = 'processed_' + base_name
             
             # Upload the processed image to Cloudinary.
-            # Optionally, you can specify a folder by adding folder='your_folder' in the arguments.
             upload_result = cloudinary.uploader.upload(
                 buffer,
                 public_id=new_public_id
             )
-            # Set the image field to the new public_id.
+            # Set the image field to the new public_id (CloudinaryField expects a public ID)
             self.image = upload_result['public_id']
-            
-        # Call the parent save method to store the model instance.
+        
+        # Call the parent save method
         super().save(*args, **kwargs)
         
     def __str__(self):
