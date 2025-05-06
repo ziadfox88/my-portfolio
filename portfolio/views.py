@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,HttpResponse
+from django.shortcuts import get_object_or_404, render,redirect,HttpResponse
 from .models import Contact,myPersonalInfo,portfolio
 from .forms import ContactForm
 from django.contrib import messages
@@ -56,7 +56,7 @@ def home(request):
                     recipient_list=[settings.CONTACT_EMAIL],
                     fail_silently=False,
                 )
-                messages.success(request, 'Thank you! Your message has been sent.')
+                messages.success(request, 'Your message has been sent successfully.')
             except Exception as e:
                 # Handle email sending errors
                 messages.error(request, f'Failed to send message: {str(e)}')
@@ -67,3 +67,11 @@ def home(request):
     return render(request, 'home.html', {'form': form, 'info': info, 'skills': skills, 'portfolios': portfolios})
 
 
+
+# def portofolio(request,year,month,day,post):
+#     portfolios = get_object_or_404(portfolio,
+#                             publish__year=year,
+#                             publish__month=month,
+#                             publish__day=day,
+#                             slug=post,)
+#     return render(request, 'portofolio.html',{'portfolios':portfolios})

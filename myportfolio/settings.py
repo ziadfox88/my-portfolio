@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -83,27 +84,27 @@ WSGI_APPLICATION = 'myportfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # 'PASSWORD': os.environ.get['DB_PASSWORD_Z'],
 
-DATABASES = {
-    'default': {
-        'ENGINE':'django.db.backends.postgresql',
-        # 'NAME':'test1',
-        # 'USER':'ziad',
-        'NAME':'railway',
-        'USER':'postgres',
-        'PASSWORD': os.getenv('DB_PASSWORD_Z'),
-        'HOST':'switchback.proxy.rlwy.net',
-        'PORT':'23007'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE':'django.db.backends.postgresql',
+#         # 'NAME':'test1',
+#         # 'USER':'ziad',
+#         'NAME':'railway',
+#         'USER':'postgres',
+#         'PASSWORD': os.getenv('DB_PASSWORD_Z'),
+#         'HOST':'switchback.proxy.rlwy.net',
+#         'PORT':'23007'
+#     }
+# }
 
 
 # Password validation
@@ -144,10 +145,8 @@ STATIC_URL = '/static/'
 
 
 
-# MEDIA_URL = '/media/'
-
-
-# MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/staticfiles/'
+MEDIA_ROOT = BASE_DIR / 'staticfiles/img'
 
 
 STATICFILES_DIRS = [
@@ -159,18 +158,18 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
-    'API_KEY': os.getenv('API_KEY'),
-    'API_SECRET': os.getenv('API_SECRET'),
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+#     'API_KEY': os.getenv('API_KEY'),
+#     'API_SECRET': os.getenv('API_SECRET'),
+# }
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-cloudinary.config(
-    cloud_name=os.getenv('CLOUD_NAME'),
-    api_key=os.getenv('API_KEY'),
-    api_secret=os.getenv('API_SECRET')
-)
+# cloudinary.config(
+#     cloud_name=os.getenv('CLOUD_NAME'),
+#     api_key=os.getenv('API_KEY'),
+#     api_secret=os.getenv('API_SECRET')
+# )
 
 
 

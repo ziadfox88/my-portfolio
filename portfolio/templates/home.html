@@ -55,7 +55,7 @@
                     <a href="#about" class="home-scroll-link"><i class='bx bx-up-arrow-alt' ></i>SCROLL DOWN</a>
                 </div>
                 {% if info.image %}
-                <img src="{{info.image.url}}" alt="{{info.name}}" class="home-img">
+                <img src="{% static "img/processed_zezooo.jpg" %}" alt="{{info.name}}" class="home-img">
                 {% else %}
 
                 {% endif %}
@@ -69,7 +69,8 @@
             <div class="about-container bd-grid">
                 <div class="about-img">
                     {% if info.image %}
-                    <img src="{{info.image.url}}" alt="{{info.name}} image">
+                    {% comment %} <img src="{{info.image.url}}" alt="{{info.name}} image"> {% endcomment %}
+                    <img src="{% static "img/processed_zezooo.jpg" %}" alt="{{info.name}} image">
 
                     {% else %}
 
@@ -199,6 +200,7 @@
                 <a href="#" class="footer-social"><i class='bx bxl-twitter'></i></a> {% endcomment %}
                 <a href="{{info.facebook}}" class="footer-social"><i class='bx bxl-facebook'></i></a>
                 <a href="{{info.linkedin}}" class="footer-social"><i class='bx bxl-linkedin'></i></a>
+                <a href="{{info.github}} "class="about-social-icon" target="_blank"><i class='bx bxl-github'></i></a>
             </div>
         </div>
     </footer>

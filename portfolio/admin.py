@@ -10,4 +10,13 @@ class MyPersonalInfoAdmin(admin.ModelAdmin):
     readonly_fields = ('hits',)  # Prevent manual edits of hit count
 
 admin.site.register(myPersonalInfo, MyPersonalInfoAdmin)
-admin.site.register(portfolio)
+
+
+@admin.register(portfolio)
+class PortfolioAdmin(admin.ModelAdmin):
+    list_display = ('title', 'publish')
+    # prepopulated_fields = {'slug':('title', )}
+    # date_hierarchy = 'publish'
+    # ordering = ['status','publish']
+
+
