@@ -3,6 +3,6 @@
   publish   = "staticfiles/"
 
 [build.environment]
-  PYTHON_VERSION = "3.12.6"
-  DJANGO_SETTINGS_MODULE = "mysite.settings.production"
+  PYTHON_VERSION = "3.9"
+  DJANGO_SETTINGS_MODULE = "myportfolio.settings"
   DEBUG            = "false"
