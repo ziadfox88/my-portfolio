@@ -29,8 +29,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','ziadalii.netlify.app']
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1/','https://ziadalii.netlify.app','https://res.cloudinary.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','ziadalii.netlify.app','my-portfolio-production-20c0.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1/','https://ziadalii.netlify.app','https://res.cloudinary.com','https://my-portfolio-production-20c0.up.railway.app']
 
 
 # Application definition
