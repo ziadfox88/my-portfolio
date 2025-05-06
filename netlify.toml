@@ -1,1 +1,14 @@
-PYTHON_VERSION = "3.12"
+# netlify.toml
+
+[build]
+  # Your build command (e.g. install deps + collectstatic)
+  command   = "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+  # The folder Netlify should publish
+  publish   = "staticfiles/"
+
+[build.environment]
+  # Pin Python version to one Netlify supports
+  PYTHON_VERSION = "3.12.6"
+  # You can also set Django settings or other ENV vars:
+  DJANGO_SETTINGS_MODULE = "mysite.settings.production"
+  DEBUG                 = "false"
