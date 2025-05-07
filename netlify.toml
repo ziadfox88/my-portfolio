@@ -4,6 +4,6 @@
 
 [build.environment]
   # Pin to the same patch release
-  PYTHON_VERSION = "3.8.17"
+  PYTHON_VERSION = "3.12.8"
   DJANGO_SETTINGS_MODULE = "mysite.settings.production"
   DEBUG                 = "false"
