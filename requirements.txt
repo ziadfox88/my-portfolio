@@ -1,11 +1,8 @@
-# Python version
-python_version ==3.11
 
 asgiref==3.8.1
 attrs==25.3.0
 certifi==2025.1.31
 charset-normalizer==3.4.1
-cloudinary==1.43.0
 colorama==0.4.6
 coloredlogs==15.0.1
 Django==5.1.7

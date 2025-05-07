@@ -27,8 +27,11 @@ from django.db.models import F
 def home(request):
     # Get the first myPersonalInfo object or None
     info = myPersonalInfo.objects.first()
-    myPersonalInfo.objects.filter(pk=info.pk).update(hits=F('hits') + 1)
-    info.refresh_from_db()
+
+    if info:  # Check if info is not None
+        myPersonalInfo.objects.filter(pk=info.pk).update(hits=F('hits') + 1)
+        info.refresh_from_db()
+
     portfolios = portfolio.objects.all()  # Get all portfolio items
     skills = []
     if info and hasattr(info, 'skills'):  # Check if the skills attribute exists
@@ -37,7 +40,7 @@ def home(request):
         else:
             # If skills is not a string but exists, convert it to a list safely
             skills = list(info.skills) if info.skills else []
-    
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
