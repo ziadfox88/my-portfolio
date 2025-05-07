@@ -1,0 +1,11 @@
+{
+  "name": "myportfolio",
+  "version": "1.0.0",
+  "description": "Minimal package.json for Netlify compatibility.",
+  "scripts": {
+    "start": "echo 'Django project - no Node build'"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
