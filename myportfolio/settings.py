@@ -19,6 +19,7 @@ from cloudinary.utils import cloudinary_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 load_dotenv()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -32,7 +33,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['localhost','127.0.0.1','ziadalii.netlify.app','my-portfolio-production-20c0.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1/','https://ziadalii.netlify.app','https://res.cloudinary.com','https://my-portfolio-production-20c0.up.railway.app']
 
-
+PYTHON_VERSION = 3.8
 # Application definition
 
 INSTALLED_APPS = [
