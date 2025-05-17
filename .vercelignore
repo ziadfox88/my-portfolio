@@ -1,0 +1,10 @@
+# Exclude unnecessary files and directories from deployment
+*.pyc
+__pycache__/
+*.sqlite3
+media/
+staticfiles/
+uploads/
+images/
+.DS_Store
+.env
