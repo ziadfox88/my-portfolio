@@ -1,7 +1,8 @@
 # Exclude unnecessary files and directories from deployment
-*.pyc
-__pycache__/
-*.sqlite3
+
+_.pyc
+**pycache**/
+_.sqlite3
 media/
 staticfiles/
 uploads/
