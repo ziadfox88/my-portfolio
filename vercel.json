@@ -4,10 +4,10 @@
         "src": "myportfolio/wsgi.py",
         "use": "@vercel/python",
         "config": {
-            "maxLambdaSize": "20mb",
-            "runtime": "python3.12.8",
+            "maxLambdaSize": "20MB",
+            "runtime": "python3.9",
             "includeFiles": [
-                "myportfolio/static/**",
+                "myportfolio/static/**/*.*",
                 "myportfolio/templates/**"
             ]
         }
@@ -15,8 +15,12 @@
     ],
     "routes": [
         {
-        "src": "/(.*)",
-        "dest": "myportfolio/wsgi.py"
+            "src": "/static/(.*)",
+            "dest": "myportfolio/static/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "myportfolio/wsgi.py"
         }
     ]
 }
