@@ -1,9 +1,9 @@
-from io import BytesIO
+# from io import BytesIO
 from django.db import models
 # from cloudinary.models import CloudinaryField
 # import cloudinary.uploader
-from PIL import Image
-from rembg import remove 
+# from PIL import Image
+# from rembg import remove 
 from django.urls import reverse
 from django.utils import timezone
 
@@ -73,36 +73,37 @@ class myPersonalInfo(models.Model):
         
     #     # Call the parent save method
     #     super().save(*args, **kwargs)
-    def save(self, *args, **kwargs):
-        # Only process if an image is provided and this is a new upload.
-        original_name = getattr(self.image, 'name', '')
-        if self.image and original_name and not original_name.startswith('processed_'):
-            try:
-                # Open the original image with Pillow
-                input_image = Image.open(self.image)
-            except Exception as e:
-                print("Error opening image:", e)
-                return super().save(*args, **kwargs)
+    
+    # def save(self, *args, **kwargs):
+    #     # Only process if an image is provided and this is a new upload.
+    #     original_name = getattr(self.image, 'name', '')
+    #     if self.image and original_name and not original_name.startswith('processed_'):
+    #         try:
+    #             # Open the original image with Pillow
+    #             input_image = Image.open(self.image)
+    #         except Exception as e:
+    #             print("Error opening image:", e)
+    #             return super().save(*args, **kwargs)
             
-            # Remove the background using rembg
-            output_image = remove(input_image)
+    #         # Remove the background using rembg
+    #         output_image = remove(input_image)
             
-            # Save the processed image to an in-memory buffer in PNG format
-            buffer = BytesIO()
-            output_image.save(buffer, format='PNG')
-            buffer.seek(0)
+    #         # Save the processed image to an in-memory buffer in PNG format
+    #         buffer = BytesIO()
+    #         output_image.save(buffer, format='PNG')
+    #         buffer.seek(0)
             
-            # Generate a new file name for the processed image
-            base_name = original_name.rsplit('.', 1)[0]
-            new_file_name = f'processed_{base_name}.png'
+    #         # Generate a new file name for the processed image
+    #         base_name = original_name.rsplit('.', 1)[0]
+    #         new_file_name = f'processed_{base_name}.png'
             
-            # Save the processed image locally
-            self.image.save(new_file_name, buffer, save=False)
+    #         # Save the processed image locally
+    #         self.image.save(new_file_name, buffer, save=False)
         
-        # Call the parent save method
-        super().save(*args, **kwargs)
-    def __str__(self):
-        return self.name
+    #     # Call the parent save method
+    #     super().save(*args, **kwargs)
+    # def __str__(self):
+    #     return self.name
     
     
 class portfolio(models.Model):
